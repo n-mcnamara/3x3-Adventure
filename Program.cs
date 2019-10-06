@@ -12,7 +12,7 @@ namespace hello
         static Boolean quit = false;
         static Boolean bearDead = false;
         static Boolean climbBean = false;
-        static Boolean hasBearhead = false;
+        static Boolean hasBearHead = false;
         
         static void Main(string[] args)
         {
@@ -49,7 +49,7 @@ namespace hello
                 if (hasBearPoo)
                     Console.WriteLine("grape");
 
-                if (hasBearhead)
+                if (hasBearHead)
                     Console.WriteLine("Bear Head");
             } else if (v.Equals("m")) {
                 map();
@@ -163,10 +163,10 @@ namespace hello
                 if (!bearDead && !climbBean) {
                     Console.WriteLine("Guard: You can only pass if you have proven yourself in combat");
                 }
-                if (bearDead && hasBearhead) {
+                if (bearDead && hasBearHead) {
                     Console.WriteLine("You give the guard the bears head.\nGuard: Wow you have proven yourself. ");
                     climbBean = true;
-                    hasBearhead = false;
+                    hasBearHead = false;
                     bearDead = false;
                 }
                 if (!bearDead && climbBean) {
@@ -178,7 +178,7 @@ namespace hello
                 if (hasSword) {
                     Console.WriteLine("You attack the bear with the sword. You take its head to prove you are worthy.");
                     bearDead = true;
-                    hasBearhead = true;
+                    hasBearHead = true;
                 }
             } else if (v == "use sword" && x == 0 && y == 2 && z == 1) { 
                 Console.Clear();
