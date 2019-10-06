@@ -7,7 +7,6 @@ namespace hello
         static int x = 0;
         static int y = 0;
         static int z = 0;
-
         static Boolean hasSword = false;
         static Boolean hasBearPoo = false;
         static Boolean quit = false;
@@ -23,15 +22,15 @@ namespace hello
             while (!quit) { 
                 display();
 
-                String v = readInput();
-                if (v == "n" || v == "s" || v == "e" || v == "w") {
-                    move(v);
-                } else if (v == "quit"|| v == "q") {
+                String userInput = readInput();
+                if (userInput == "n" || userInput == "s" || userInput == "e" || userInput == "w") {
+                    move(userInput);
+                } else if (userInput == "quit"|| userInput == "q") {
                     quit = true;
-                } else if (v == "p" || v == "use sword" || v == "t" || v == "c") { 
-                    actions(v);
+                } else if (userInput == "p" || userInput == "use sword" || userInput == "t" || userInput == "c") { 
+                    actions(userInput);
                 } else {
-                    otherCrap(v);
+                    otherCrap(userInput);
                 }
             }
         }
@@ -52,7 +51,9 @@ namespace hello
 
                 if (hasBearhead)
                     Console.WriteLine("Bear Head");
-            }    
+            } else if (v.Equals("m")) {
+                map();
+            }
             else {
                 Console.Clear();
                 Console.WriteLine("That doesnt work"); 
@@ -90,15 +91,15 @@ namespace hello
             }else if (x==0 && y==1 && z == 1) {               
                 Console.WriteLine("There is a well. On closer inspection it leads to ground level far below. You wouldnt want to fall down.");
             }else if (x==0 && y==2 && z == 1) {               
-                Console.WriteLine("Theres a BEAR AGAIN! This time its made of clouds."); // not important . add stabbing featur that doesnt work
+                Console.WriteLine("Theres a BEAR AGAIN! This time it looks like a ghost."); 
             }else if (x==1 && y==1 && z == 1) {               
                 Console.WriteLine("This is the top of the bean stalk. All around you is a world on top of clouds.\nEnter c to climb down the bean stalk. ");
             }else if (x==1 && y==2 && z == 1) {               
-                Console.WriteLine("fart ");
+                Console.WriteLine("placeholder 2 ");
             }else if (x==2 && y==1 && z == 1) {               
                 Console.WriteLine("You see a shack with an old man sitting on a pool doughnut. Maybe you can talk to him"); // add talk feature
             }else if (x==2 && y==2 && z == 1) {               
-                Console.WriteLine("neasa smells bad ");
+                Console.WriteLine("placeholder ");
             }else if (x==1 && y==0 && z == 1) {               
                 Console.WriteLine("The clouds here make the shape of a stairs so you ascend them. Looking around you are now able to make out something moving to the west.");
             }else if (x==2 && y==0 && z == 1) {               
@@ -106,18 +107,18 @@ namespace hello
             }
         }
 
-        static void move(String v)
+        static void move(String direction)
         { //quit
-            if (v == "e") {
+            if (direction == "e") {
                 Console.Clear();
                 x += 1;
-            } else if (v == "w") { 
+            } else if (direction == "w") { 
                 Console.Clear();
                 x -= 1;
-            } else if (v == "n") {
+            } else if (direction == "n") {
                 Console.Clear();
                 y += 1;
-            } else if (v == "s") {
+            } else if (direction == "s") {
                 Console.Clear();
                 y -= 1;
             }
@@ -154,23 +155,24 @@ namespace hello
             } else if (v == "p" && x == 1 && y == 2 && z == 0) { 
                 Console.Clear();
                 if (!hasBearPoo) {
-                    Console.WriteLine("You haz Poo");
+                    Console.WriteLine("You has grape");
                     hasBearPoo = true;
                 }
             } else if (v == "t" && x == 1 && y == 1 && z == 0) { 
                 Console.Clear();
-                if (!bearDead) {
+                if (!bearDead && !climbBean) {
                     Console.WriteLine("Guard: You can only pass if you have proven yourself in combat");
                 }
                 if (bearDead && hasBearhead) {
-                    Console.WriteLine("You give the guard the bears head.\nGuard:Wow you have proven yourself. You may now climb the beanstalk. press c to climb");
+                    Console.WriteLine("You give the guard the bears head.\nGuard: Wow you have proven yourself. ");
                     climbBean = true;
                     hasBearhead = false;
+                    bearDead = false;
                 }
-                else {
+                if (!bearDead && climbBean) {
                      Console.WriteLine("Guard: You may now climb the beanstalk. press c to climb");
                     climbBean = true;
-                }      
+                }    
             } else if (v == "use sword" && x == 0 && y == 2 && z == 0 && !bearDead) { 
                 Console.Clear();
                 if (hasSword) {
@@ -178,9 +180,16 @@ namespace hello
                     bearDead = true;
                     hasBearhead = true;
                 }
+            } else if (v == "use sword" && x == 0 && y == 2 && z == 1) { 
+                Console.Clear();
+                Console.WriteLine("You attack the bear with the sword. However this time, the sword goes thoruh it and does nothing. You should probably run now.");     
+            } else if (v == "t" && x == 2 && y == 1 && z == 1) { 
+                Console.Clear();
+                Console.WriteLine("Old Man: Hey there Jerry, havent seen you around these parts in years!\nYou: Umm im not Jerry.\nOld Man: Anyway Jerry yesterday I went fishing and caught a flying fish! It was a rare brown one aswell which coincidentally is my favourite colour. Anyway I was going to cook him when suddenly a bear runs over and takes it from me... And thats why I dont celebrate easter when im hungry.\nWhat a wierd man.");  
+
             } else if (v == "c" && x == 1 && y == 1 && z == 0 && climbBean) {
                 Console.Clear(); {
-                Console.WriteLine("You climb up the bean stalk carefully. As you climb you realise you have reached cloud land. ");
+                Console.WriteLine("You climb up the bean stalk carefully. As you climb you realise you have reached some sort of new world on top of the clouds. ");
                 z += 1;
                 }
             } else if (v == "c" && x == 1 && y == 1 && z == 1 && climbBean) {
@@ -190,8 +199,40 @@ namespace hello
             }
             else {
                 Console.Clear();
-                Console.WriteLine("That doesnt work"); 
+                Console.WriteLine("That doesnt work"); //d
             }        
+        }
+        static void map() {
+            String mapLine = "\"\"\"";
+
+            if (z == 1) {
+                mapLine = "~~~";
+            }
+
+            if (y == 0) {
+                Console.Clear();
+                Console.WriteLine(mapLine);
+                Console.WriteLine(mapLine);
+                printMe(mapLine);
+
+            } else if (y == 1) {
+                Console.Clear();
+                Console.WriteLine(mapLine);
+                printMe(mapLine);
+                Console.WriteLine(mapLine);
+            } else if (y == 2) {
+                Console.Clear();
+                printMe(mapLine);
+                Console.WriteLine(mapLine);
+                Console.WriteLine(mapLine);
+            }
+        }
+
+        static void printMe(String mapLine) {
+            char[] line = mapLine.ToCharArray();
+            line[x] = 'X';
+
+            Console.WriteLine(line);
         }
     }
 }
