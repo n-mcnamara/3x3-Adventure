@@ -30,15 +30,19 @@ namespace hello
                 showLocation();
 
                 String userInput = readInput();
-                if (userInput == "n" || userInput == "s" || userInput == "e" || userInput == "w")
+                if (userInput.Equals("n") || userInput.Equals("s") 
+                    || userInput.Equals("e") || userInput.Equals("w"))
                 {
                     move(userInput);
                 }
-                else if (userInput == "quit" || userInput == "q")
+                else if (userInput.Equals("quit") || userInput.Equals("q"))
                 {
                     quit = true;
                 }
-                else if (userInput == "p" || userInput == "use sword" || userInput == "t" || userInput == "c")
+                else if (userInput.Equals("p") 
+                    || userInput.Equals("use sword") 
+                    || userInput.Equals("t") 
+                    || userInput.Equals("c"))
                 {
                     actions(userInput);
                 }
@@ -49,13 +53,13 @@ namespace hello
             }
         }
 
-        static void otherCrap(String v)
+        static void otherCrap(String command)
         {
-            if (v == "i")
+            if (command.Equals("i"))
             {
                 showInventory();
             }
-            else if (v.Equals("m"))
+            else if (command.Equals("m"))
             {
                 showMap();
             }
@@ -305,7 +309,7 @@ namespace hello
 
         static void showMap()
         {
-            String mapLine = "\"\"\"";
+            String mapLine = "...";
 
             if (z == 1)
             {
