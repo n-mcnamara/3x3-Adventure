@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace hello
 {
@@ -17,7 +17,13 @@ namespace hello
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to world of Noah\nCommands:\n- Enter use (item) to use items\n- Enter i to open inventory\n- Enter n, e ,s or w to move that direction ");
+            Console.WriteLine("Welcome to Noah's World");
+            Console.WriteLine();
+            Console.WriteLine("Commands:");
+            Console.WriteLine("Enter `use (item)` to use items.");
+            Console.WriteLine("Enter i to open inventory.");
+            Console.WriteLine("Enter m to show the map.");
+            Console.WriteLine("Enter n, e ,s or w to move in that direction.");
 
             while (!quit)
             {
