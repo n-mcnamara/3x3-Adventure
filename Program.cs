@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 
 namespace hello
 {
@@ -17,11 +17,17 @@ namespace hello
         static void Main(string[] args)
         {
 
-            Console.WriteLine("Welcome to world of Noah\nCommands:\n- Enter use (item) to use items\n- Enter i to open inventory\n- Enter n, e ,s or w to move that direction ");
+            Console.WriteLine("Welcome to Noah's World");
+            Console.WriteLine();
+            Console.WriteLine("Commands:");
+            Console.WriteLine("Enter `use (item)` to use items.");
+            Console.WriteLine("Enter i to open inventory.");
+            Console.WriteLine("Enter m to show the map.");
+            Console.WriteLine("Enter n, e ,s or w to move in that direction.");
 
             while (!quit)
             {
-                display();
+                showLocation();
 
                 String userInput = readInput();
                 if (userInput == "n" || userInput == "s" || userInput == "e" || userInput == "w")
@@ -43,29 +49,15 @@ namespace hello
             }
         }
 
-        static String readInput()
-        {
-            return Console.ReadLine();
-        }
-
         static void otherCrap(String v)
         {
             if (v == "i")
             {
-                Console.Clear();
-                Console.WriteLine("Your inventory: ");
-                if (hasSword)
-                    Console.WriteLine("Sword");
-
-                if (hasBearPoo)
-                    Console.WriteLine("grape");
-
-                if (hasBearHead)
-                    Console.WriteLine("Bear Head");
+                showInventory();
             }
             else if (v.Equals("m"))
             {
-                map();
+                showMap();
             }
             else
             {
@@ -73,7 +65,8 @@ namespace hello
                 Console.WriteLine("That doesnt work");
             }
         }
-        static void display()
+
+        static void showLocation()
         {
             // display of ground levels
             // Console.WriteLine("You are at {0}, {1} ", x, y);
@@ -266,7 +259,11 @@ namespace hello
             else if (v == "t" && x == 2 && y == 1 && z == 1)
             {
                 Console.Clear();
-                Console.WriteLine("Old Man: Hey there Jerry, havent seen you around these parts in years!\nYou: Umm im not Jerry.\nOld Man: Anyway Jerry yesterday I went fishing and caught a flying fish! It was a rare brown one aswell which coincidentally is my favourite colour. Anyway I was going to cook him when suddenly a bear runs over and takes it from me... And thats why I dont celebrate easter when im hungry.\nWhat a wierd man.");
+                Console.WriteLine("Old Man: Hey there Jerry, havent seen you around these parts in years!");
+                Console.WriteLine("You: Umm im not Jerry.");
+                Console.WriteLine("Old Man: Anyway Jerry yesterday I went fishing and caught a flying fish! It was a rare brown one as well which coincidentally is my favourite colour.");
+                Console.WriteLine("Old Man: So I was going to cook him when suddenly a bear runs over and takes it from me... And thats why I dont celebrate easter when I'm hungry.");
+                Console.WriteLine("You: (thinking) What a wierd man.");
 
             }
             else if (v == "c" && x == 1 && y == 1 && z == 0 && climbBean)
@@ -288,10 +285,25 @@ namespace hello
             else
             {
                 Console.Clear();
-                Console.WriteLine("That doesnt work"); //d
+                Console.WriteLine("That doesnt work");
             }
         }
-        static void map()
+
+        static void showInventory()
+        {
+            Console.Clear();
+            Console.WriteLine("Your inventory: ");
+            if (hasSword)
+                Console.WriteLine("Sword");
+
+            if (hasBearPoo)
+                Console.WriteLine("grape");
+
+            if (hasBearHead)
+                Console.WriteLine("Bear Head");
+        }
+
+        static void showMap()
         {
             String mapLine = "\"\"\"";
 
@@ -322,6 +334,7 @@ namespace hello
                 Console.WriteLine(mapLine);
                 Console.WriteLine(mapLine);
             }
+            Console.WriteLine();
         }
 
         static void printMe(String mapLine)
@@ -331,5 +344,12 @@ namespace hello
 
             Console.WriteLine(line);
         }
+
+        static String readInput()
+        {
+            return Console.ReadLine();
+        }
+
+
     }
 }
