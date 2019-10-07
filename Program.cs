@@ -272,7 +272,11 @@ namespace hello
             else if (v == "t" && x == 2 && y == 1 && z == 1)
             {
                 Console.Clear();
-                Console.WriteLine("Old Man: Hey there Jerry, havent seen you around these parts in years!\nYou: Umm im not Jerry.\nOld Man: Anyway Jerry yesterday I went fishing and caught a flying fish! It was a rare brown one aswell which coincidentally is my favourite colour. Anyway I was going to cook him when suddenly a bear runs over and takes it from me... And thats why I dont celebrate easter when im hungry.\nWhat a wierd man.");
+                Console.WriteLine("Old Man: Hey there Jerry, havent seen you around these parts in years!");
+                Console.WriteLine("You: Umm im not Jerry.");
+                Console.WriteLine("Old Man: Anyway Jerry yesterday I went fishing and caught a flying fish! It was a rare brown one as well which coincidentally is my favourite colour.");
+                Console.WriteLine("Old Man: So I was going to cook him when suddenly a bear runs over and takes it from me... And thats why I dont celebrate easter when I'm hungry.");
+                Console.WriteLine("You: (thinking) What a wierd man.");
 
             }
             else if (v == "c" && x == 1 && y == 1 && z == 0 && climbBean)
@@ -294,7 +298,7 @@ namespace hello
             else
             {
                 Console.Clear();
-                Console.WriteLine("That doesnt work"); //d
+                Console.WriteLine("That doesnt work");
             }
         }
         static void map()
